@@ -1,0 +1,65 @@
+{% include 'hospital/hospital_header.html' %}
+<style>
+    /* Inline CSS styles for the form */
+    .form-container {
+      margin-bottom: 20px;
+    }
+  
+    .dispatch-form .select-field,
+    .dispatch-form .textarea-field {
+      width: calc(100% - 10px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+  
+    .dispatch-form .select-field {
+      height: 35px; /* Adjust the height as needed */
+    }
+  
+    .dispatch-form .textarea-field {
+      height: 100px; /* Adjust the height as needed */
+    }
+  
+    .dispatch-form .label-field {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    .dispatch-form .submit-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 3px;
+    }
+  
+    /* Adjust the appearance of the submit button on hover */
+    .dispatch-form .submit-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+<div class="form-container">
+  <form method="post" class="dispatch-form">
+    <select name="aid" id="">
+      {% for i in w %}
+      <option value="{{i.id}}">{{i.model_number}} {{i.vehicle_number}}</option>
+      {% endfor %}
+    </select>
+    <label for="msg" class="label-field">Message</label>
+    <textarea name="msg" id="msg" class="textarea-field"></textarea><br>
+    <input type="submit" name="submit" class="submit-button">
+  </form>
+</div>
+</div>
+
+{% include 'public/footer.html' %}

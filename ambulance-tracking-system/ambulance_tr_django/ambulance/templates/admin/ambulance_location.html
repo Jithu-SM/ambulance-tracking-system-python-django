@@ -1,0 +1,61 @@
+
+{% if request.session.utype == 'admin' %} 
+{% include 'admin/admin_header.html' %} 
+{% else %} 
+{%include 'hospital/hospital_header.html'%}
+ {% endif %}
+ <style>
+ /* CSS styles for tables */
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.table td {
+  text-align: center;
+}
+</style>
+<div class="container mt-5">
+    <div class="table-container">
+<table class="table">
+    <tr>
+        <th>Driver Name</th>
+        <th>Vehicle Number</th>
+        <th>Type</th>
+        <th>Capacity</th>
+        <th>View Map</th>
+    </tr>
+    {% for i in q %}
+    <tr>
+        <td>{{ i.ambulance.driver_name }}</td>
+        <td>{{ i.ambulance.vehicle_number }}</td>
+        <td>{{ i.ambulance.type }}</td>
+        <td>{{ i.ambulance.capacity }}</td>
+        <td><a href="http://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}">View Location</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{%include 'public/footer.html'%}

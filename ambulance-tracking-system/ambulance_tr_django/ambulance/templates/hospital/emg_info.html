@@ -1,0 +1,54 @@
+{%include 'hospital/hospital_header.html'%}
+<style>
+    /* CSS styles for tables */
+   .table-container {
+     overflow-x: auto;
+   }
+   
+   .table {
+     width: 100%;
+     border-collapse: collapse;
+   }
+   
+   .table th, .table td {
+     border: 1px solid #ddd;
+     padding: 8px;
+   }
+   
+   .table th {
+     background-color: #f2f2f2;
+     text-align: left;
+   }
+   
+   .table td {
+     text-align: center;
+   }
+   </style>
+   <div class="container mt-5">
+    <div class="table-container">
+<table class="table">
+    <tr>
+   
+        <th>info</th>
+        <th>date</th>
+        <th>time</th>
+
+    </tr>
+    {% for i in q%}
+    <tr>
+        <td>{{i.info}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.time}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{%include 'public/footer.html'%}

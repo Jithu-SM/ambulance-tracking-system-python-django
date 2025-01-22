@@ -1,0 +1,67 @@
+{% include 'admin/admin_header.html' %}
+<style>
+
+
+    /* CSS styles for the table */
+.table-container {
+  overflow-x: auto;
+}
+
+.feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.feedback-table th, .feedback-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.feedback-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.feedback-table td {
+  text-align: center;
+}
+
+.feedback-table td:first-child {
+  text-align: left;
+}
+
+.feedback-table td:last-child {
+  text-align: right;
+}
+
+</style>
+<div class="container mt-5">
+<div class="table-container">
+  <table class="feedback-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Feedback</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in q %}
+        <tr>
+          <td>{{ i.user.fname }}</td>
+          <td>{{ i.feedback }}</td>
+          <td>{{ i.date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% include 'public/footer.html' %}

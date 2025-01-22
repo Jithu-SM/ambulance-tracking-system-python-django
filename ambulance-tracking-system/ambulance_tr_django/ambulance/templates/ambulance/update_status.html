@@ -1,0 +1,188 @@
+
+{%include 'ambulance/ambulance_header.html'%}
+<div style="padding-top: 100px;">
+    <center>
+        <h1><span style="color: #0e1d34;"><b> update status</b></span></h1>
+    </center>
+
+<form action="" method="post">
+   <table border="" align="center">
+   <tr>
+<th>Location</th>
+        <td>
+             <a class="btn btn-success" onclick="myFunction();"><b>View Map</b></a>	<div id="dvMap" style="width: 450px; height: 400px"></div>
+        </td>
+    </tr>
+  <tr>
+					<th>latitude</th>
+					<td><input type="text" required name="latitude" class="form-control" id="lat">
+   </td>
+				</tr>
+				<tr>
+					<th>longitude</th>
+					<td><input type="text" required name="longitude" class="form-control" id="lon" ></td>
+				</tr>
+   <tr>
+					<th>Place</th>
+					<td><input type="text" required name="place" class="form-control" id="place" ></td>
+				</tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" name="submit" id=""></td>
+    </tr>
+</table> 
+</form>
+
+
+
+
+
+
+</div>
+    <style>
+        table {
+      width: 70%;
+      height: 50%; /* Adjusted height */
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+    }
+      
+        th, td {
+          padding: 8px;
+          border-bottom: 1px solid #000000;
+          text-align: left;
+        }
+      
+        th {
+          background-color:#6b0000;
+          color: white; /* Change text color to white for better visibility */
+        }
+      
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+          width: 100%;
+          padding: 8px;
+          margin: 4px 0;
+          box-sizing: border-box;
+        }
+      
+        input[type="submit"] {
+          background-color: #6b0000; /* Change button color */
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+      
+        input[type="submit"]:hover {
+          background-color: #d30000;
+        }
+      </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function my() {
+        $("input[name='firstname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='lastname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='post']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='city']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='salary']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pinc']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                } else {
+                    $('#eerror').hide();
+                }
+        });            
+        $("input[name='password']").on('input', function(e) {
+            
+        	$(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+    function check() {
+        
+        if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+            
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'matching';
+    } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'not matching';
+    }
+}
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".member-row").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) >= 0);
+            });
+        });
+    });
+</script>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3MPnSnyWwNmpnVEFkaddVvy_GWtxSejs&sensor=false"></script>
+    <script type="text/javascript">
+        // window.onload = function () {
+          function myFunction(){
+
+            var mapOptions = {
+                center: new google.maps.LatLng(9.9763482, 76.286272),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var latlngbounds = new google.maps.LatLngBounds();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            google.maps.event.addListener(map, 'click', function (e) {
+{#                alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());#}
+              document.getElementById('lat').value = e.latLng.lat();
+                document.getElementById('lon').value = e.latLng.lng();
+
+
+
+            });
+        }
+    </script>
+
+<br>
+<br>
+<br>
+<br>
+{%include 'public/footer.html'%}
+        

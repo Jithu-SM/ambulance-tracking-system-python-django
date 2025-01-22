@@ -1,0 +1,157 @@
+{% include 'admin/admin_header.html' %}
+<style>/* CSS styles for the form */
+    .form-container {
+      margin-bottom: 20px;
+    }
+    
+    .hospital-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .hospital-form input[type="text"],
+    .hospital-form input[type="password"],
+    .hospital-form input[type="file"],
+    .hospital-form input[type="submit"] {
+      width: calc(100% - 10px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    
+    .hospital-form input[type="submit"] {
+      background-color: #d30000;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* CSS styles for the table */
+    .table-container {
+      overflow-x: auto;
+    }
+    
+    .hospital-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .hospital-table th, .hospital-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    .hospital-table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+    
+    .hospital-table td img {
+      max-width: 100px;
+    }
+    
+    .hospital-table td a {
+      display: block;
+      margin-top: 5px;
+      text-decoration: none;
+      color: #337ab7;
+    }
+    
+    .hospital-table td a:hover {
+      text-decoration: underline;
+    }
+    </style>
+    <div class="container mt-5">
+<div class="form-container">
+  {% if q2 %}
+    <form method="post" enctype="multipart/form-data" class="hospital-form">
+      <!-- Input fields for editing existing entry -->
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="{{ q2.name }}"><br>
+      <label for="place">Place</label>
+      <input type="text" id="place" name="place" value="{{ q2.place }}"><br>
+      <label for="post">Post</label>
+      <input type="text" id="post" name="post" value="{{ q2.post }}"><br>
+      <label for="pin">PIN</label>
+      <input type="text" id="pin" name="pin" value="{{ q2.pin }}"><br>
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" value="{{ q2.city }}"><br>
+      <label for="district">District</label>
+      <input type="text" id="district" name="district" value="{{ q2.district }}"><br>
+      <label for="photo">Photo</label>
+      <input type="file" id="photo" name="photo"><br>
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" value="{{ q2.phone }}"><br>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" value="{{ q2.email }}"><br>
+      <input type="submit" name="submit">
+    </form>
+  {% else %}
+    <form method="post" enctype="multipart/form-data" class="hospital-form">
+      <!-- Input fields for creating a new entry -->
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name"><br>
+      <label for="place">Place</label>
+      <input type="text" id="place" name="place"><br>
+      <label for="post">Post</label>
+      <input type="text" id="post" name="post"><br>
+      <label for="pin">PIN</label>
+      <input type="text" id="pin" name="pin"><br>
+      <label for="city">City</label>
+      <input type="text" id="city" name="city"><br>
+      <label for="district">District</label>
+      <input type="text" id="district" name="district"><br>
+      <label for="photo">Photo</label>
+      <input type="file" id="photo" name="photo"><br>
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone"><br>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email"><br>
+      <label for="email">Password</label>
+      <input type="password" id="password" name="password"><br>
+      <input type="submit" name="submit">
+    </form>
+  {% endif %}
+</div>
+
+<div class="table-container">
+  <table class="hospital-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Place</th>
+        <th>Post</th>
+        <th>PIN</th>
+        <th>City</th>
+        <th>District</th>
+        <th>Photo</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in q3 %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.place }}</td>
+          <td>{{ i.post }}</td>
+          <td>{{ i.pin }}</td>
+          <td>{{ i.city }}</td>
+          <td>{{ i.district }}</td>
+          <td><img src="{{ i.photo }}" alt="Hospital Photo" width="100"></td>
+          <td>{{ i.phone }}</td>
+          <td>{{ i.email }}</td>
+          <td>
+            <a href="/update_hospital/{{ i.id }}" style="color: #000000;" class="btn btn-success">Update Hospital</a>
+            <a href="/delete_hospital/{{ i.id }}"   style="color: #000000;"class="btn btn-danger">Delete Hospital</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+{% include 'public/footer.html' %}

@@ -1,0 +1,63 @@
+{% include 'ambulance/ambulance_header.html' %}
+<style>
+    /* CSS styles for the form */
+.form-container {
+  margin-bottom: 20px;
+}
+
+.info-form .select-field,
+.info-form .textarea-field {
+  width: calc(100% - 10px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.info-form .select-field {
+  height: 35px; /* Adjust the height as needed */
+}
+
+.info-form .submit-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+
+/* Adjust the appearance of the submit button on hover */
+.info-form .submit-button:hover {
+  background-color: #45a049;
+}
+
+.info-form .label-field {
+  display: block;
+  margin-bottom: 5px;
+}
+
+</style>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="form-container">
+  <form method="post" class="info-form">
+    <label for="name" class="label-field">Hospital Name</label>
+    <select name="hid" id="">
+      {% for i in w %}
+      <option value="{{ i.id }}">{{ i.name }}</option>
+      {% endfor %}
+    </select>
+    
+    <label for="info" class="label-field">Info</label>
+    <textarea name="info" id="info" class="textarea-field"></textarea><br>
+    <input type="submit" name="submit" class="submit-button">
+  </form>
+</div>
+</div>
+
+{% include 'public/footer.html' %}

@@ -1,0 +1,138 @@
+{% include 'ambulance/ambulance_header.html' %}
+<style>
+    /* CSS styles for the form */
+.form-container {
+  margin-bottom: 20px;
+}
+
+.patient-form .select-field,
+.patient-form .input-field,
+.patient-form .textarea-field {
+  width: calc(100% - 10px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.patient-form .select-field {
+  height: 35px; /* Adjust the height as needed */
+}
+
+.patient-form .submit-button {
+  background-color: #350000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+
+/* Adjust the appearance of the submit button on hover */
+.patient-form .submit-button:hover {
+  background-color: #3b0000;
+}
+
+/* CSS styles for the table */
+.table-container {
+  overflow-x: auto;
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-table th, .patient-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.patient-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.patient-table td {
+  text-align: center;
+}
+
+.patient-table td:last-child {
+  text-align: center;
+}
+
+/* Style for delete link */
+/* .delete-link {
+  color: rgb(97, 0, 0);
+  text-decoration: none;
+}
+
+.delete-link:hover {
+  text-decoration: underline;
+} */
+
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="form-container">
+      <label for="name" class="label-field">Hospital Name</label>
+  <form method="post" class="patient-form">
+    <select name="hid" id="" >
+      {% for i in w %}
+      <option value="{{i.id}}">{{i.name}}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="name" class="label-field">Patient Name</label>
+    <input type="text" id="name" name="name" class="input-field"><br>
+    <label for="gender" class="label-field">Gender</label>
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female<br>
+    <label for="pulse" class="label-field">Pulse</label>
+    <input type="text" id="pulse" name="pulse" class="input-field"><br>
+    <label for="sugar" class="label-field">Sugar</label>
+    <input type="text" id="sugar" name="sugar" class="input-field"><br>
+    <label for="blood_pressure" class="label-field">Blood Pressure</label>
+    <input type="text" id="blood_pressure" name="blood_pressure" class="input-field"><br>
+    <label for="description" class="label-field">Description</label>
+    <input type="text" id="description" name="description" class="input-field"><br>
+    <input type="submit" name="submit" class="submit-button">
+  </form>
+</div>
+
+<div class="table-container">
+  <table class="patient-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Pulse</th>
+        <th>Sugar</th>
+        <th>Blood Pressure</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in q %}
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.gender }}</td>
+          <td>{{ i.pulse }}</td>
+          <td>{{ i.sugar }}</td>
+          <td>{{ i.blood_pressure }}</td>
+          <td>{{ i.description }}</td>
+          <td><a href="/delete_patient/{{ i.id }}" class="btn btn-danger">Delete</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% include 'public/footer.html' %}

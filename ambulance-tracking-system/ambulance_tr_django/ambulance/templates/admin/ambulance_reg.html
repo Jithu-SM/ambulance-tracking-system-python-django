@@ -1,0 +1,73 @@
+{% include 'admin/admin_header.html' %}
+<style>
+    /* CSS styles for the form */
+.form-container {
+  margin-bottom: 20px;
+}
+
+.vehicle-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.vehicle-form input[type="text"],
+.vehicle-form input[type="password"],
+.vehicle-form input[type="submit"] {
+  width: calc(100% - 10px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.vehicle-form input[type="submit"] {
+  background-color: #6b0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Adjust the appearance of the submit button on hover */
+.vehicle-form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+</style>
+<div class="container">
+    <div class="form-container"></div>
+  <form method="post" class="vehicle-form">
+    <label for="vehicle_number">Vehicle Number</label>
+    <input type="text" id="vehicle_number" name="vehicle_number"><br>
+    <label for="model_number">Model Number</label>
+    <input type="text" id="model_number" name="model_number"><br>
+    <label for="type">Type</label>
+    <input type="text" id="type" name="type"><br>
+    <label for="capacity">Capacity</label>
+    <input type="text" id="capacity" name="capacity"><br>
+    <label for="cardiac_monitor">Cardiac Monitor</label>
+    <input type="radio" name="cardiac_monitor" value="yes">yes 
+    <input type="radio" name="cardiac_monitor" value="no">no<br>
+    <hr>
+    <label for="defibrillator">Defibrillator</label>
+    <input type="radio" name="defibrillator" value="yes">yes
+    <input type="radio" name="defibrillator" value="no">no<br>
+    <hr>
+    <label for="oxygen">Oxygen</label>
+    <input type="radio" name="oxygen" value="yes">yes
+    <input type="radio" name="oxygen" value="no">no<br>
+    <hr>
+    <label for="facilities">Facilities</label>
+    <input type="text" id="facilities" name="facilities"><br>
+    <label for="driver_name">Driver Name</label>
+    <input type="text" id="driver_name" name="driver_name"><br>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" name="submit">
+  </form>
+</div>
+</div>
+
+{% include 'public/footer.html' %}

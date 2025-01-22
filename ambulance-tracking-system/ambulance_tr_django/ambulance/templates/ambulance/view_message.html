@@ -1,0 +1,58 @@
+{% include 'ambulance/ambulance_header.html' %}
+<style>
+    /* CSS styles for the table */
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.message-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.message-table th, .message-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.message-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.message-table td {
+  text-align: center;
+}
+
+/* Style for alternate row background */
+.message-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+</style>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="table-container">
+  <table class="message-table">
+    <thead>
+      <tr>
+        <th>Message</th>
+        <th>Date & Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in q %}
+      <tr>
+        <td>{{ i.description }}</td>
+        <td>{{ i.datetime }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% include 'public/footer.html' %}
